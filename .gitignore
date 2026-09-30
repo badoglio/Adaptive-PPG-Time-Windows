@@ -39,3 +39,18 @@ test_plot.html
 
 # Exclude private reference documentation
 Project Reference Docs/
+
+# Test / lint caches and pipeline outputs
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+results/
+
+# Local-only files (not distributed)
+# S01.csv: unknown provenance and license, kept only for local analyses
+sample_data/S01.csv
+# Local agent skills and working notes
+.agents/
+.claude/
+Adaptive-PPG-Time-Windows — To Do List.md
+ISTRUZIONI_UPLOAD_GITHUB.md

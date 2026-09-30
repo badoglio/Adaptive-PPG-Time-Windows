@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adaptive-ppg"
+dynamic = ["version"]
+description = "Variable-width ensemble averaging of PPG morphology driven by morphological non-stationarity"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.9"
+authors = [{ name = "Adaptive PPG contributors" }]
+keywords = ["photoplethysmography", "PPG", "ensemble averaging", "SDPTG", "biosignal"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "numpy>=1.22",
+    "scipy>=1.8",
+    "pandas>=1.4",
+    "plotly>=5.10",
+]
+
+[project.optional-dependencies]
+edf = ["pyedflib>=0.1.30"]
+app = ["streamlit>=1.50", "openpyxl>=3.0"]   # width="stretch" in charts
+yaml = ["pyyaml>=6.0"]
+biosppy = ["biosppy>=2.0", "peakutils"]   # biosppy imports peakutils without declaring it
+dev = ["pytest>=7", "ruff>=0.4"]
+all = ["adaptive-ppg[edf,app,yaml,biosppy,dev]"]
+
+[project.scripts]
+adaptive-ppg = "adaptive_ppg.cli:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "adaptive_ppg.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+adaptive_ppg = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 120
+target-version = "py39"
+src = ["src", "tests", "app"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["UP006", "UP007", "UP035", "UP037", "UP045", "B905"]

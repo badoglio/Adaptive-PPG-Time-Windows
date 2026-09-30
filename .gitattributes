@@ -1,0 +1,24 @@
+# Normalize line endings: text files are stored with LF in the repository,
+# whatever the operating system and the core.autocrlf setting of each clone.
+* text=auto eol=lf
+
+*.py     text eol=lf
+*.md     text eol=lf
+*.toml   text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+*.json   text eol=lf
+*.txt    text eol=lf
+LICENSE  text eol=lf
+*.bat    text eol=crlf
+*.ps1    text eol=crlf
+
+# Data files are stored byte for byte (no line-ending conversion); diffs still show them as text.
+*.csv    -text diff
+*.CSV    -text diff
+*.edf    binary
+*.bdf    binary
+*.mat    binary
+*.xlsx   binary
+*.pdf    binary
+*.png    binary
